@@ -1,9 +1,12 @@
 "use client";
 import Navbar from "@/components/Navbar";
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { FaAngleDoubleDown } from "react-icons/fa";
 
 export default function Home() {
+  const scrollValue = useScroll();
+  const indicatorOpacity = useTransform(scrollValue.scrollY, [0, 200], [1, 0]);
+
   return (
     <main className="h-screen bg-gruvbox-dark-bg0">
       <Navbar />
@@ -52,14 +55,14 @@ export default function Home() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="border-2 bg-gruvbox-dark-orange border-gruvbox-dark-orange py-2.5 px-4 rounded-sm"
+              className="cursor-pointer border-2 bg-gruvbox-dark-orange border-gruvbox-dark-orange py-2.5 px-4 rounded-sm"
             >
               Let's Connect
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="border-2 text-gruvbox-dark-orange border-gruvbox-dark-orange py-2.5 px-4 rounded-sm"
+              className="cursor-pointer border-2 text-gruvbox-dark-orange border-gruvbox-dark-orange py-2.5 px-4 rounded-sm"
             >
               View My Work
             </motion.button>
@@ -68,12 +71,15 @@ export default function Home() {
 
         <motion.div
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-gruvbox-dark-fg3 "
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5 }}
+          initial={{ opacity: 0, repeatCount: 1 }}
+          animate={{ opacity: 1, y: [0, 10, 0] }}
+          transition={{ delay: 2, y: { repeat: Infinity, duration: 1.5 } }}
+          style={{ opacity: indicatorOpacity }}
         >
-          <FaAngleDoubleDown size={28}/>
+          <FaAngleDoubleDown size={28} />
         </motion.div>
       </section>
+      <section className="h-screen bg-emerald-300"></section>
     </main>
   );
 }
