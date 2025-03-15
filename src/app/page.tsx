@@ -1,6 +1,7 @@
 "use client";
 import Navbar from "@/components/Navbar";
 import { motion } from "motion/react";
+import { FaAngleDoubleDown } from "react-icons/fa";
 
 export default function Home() {
   return (
@@ -63,6 +64,14 @@ export default function Home() {
               View My Work
             </motion.button>
           </motion.div>
+        </motion.div>
+
+        <motion.div
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-gruvbox-dark-fg3 "
+          animate={{ y: [0, 10, 0] }}
+          transition={{ repeat: Infinity, duration: 1.5 }}
+        >
+          <FaAngleDoubleDown size={28}/>
         </motion.div>
       </section>
     </main>
