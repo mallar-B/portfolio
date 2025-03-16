@@ -6,10 +6,15 @@ import { FaAngleDoubleDown } from "react-icons/fa";
 
 export default function Home() {
   const scrollValue = useScroll();
-  const indicatorOpacity = useTransform(scrollValue.scrollY, [0, 200], [1, 0]);
+  const indicatorOpacity = useTransform(scrollValue.scrollY, [0, 150], [1, 0]);
   const heroScale = useTransform(scrollValue.scrollY, [0, 250], [1, 0.6]);
   const heroOpacity = useTransform(scrollValue.scrollY, [0, 250], [1, 0.2]);
-  const gridOpacity = useTransform(scrollValue.scrollY, [0, 650], [1, 0]);
+  const heroSectionHeight = useTransform(
+    scrollValue.scrollY,
+    [0, 250],
+    ["100vh", "60vh"],
+  );
+  const gridOpacity = useTransform(scrollValue.scrollY, [0, 350], [1, 0]);
   const gridSize = 57;
   const [numCols, setNumCols] = useState(0);
   const [numRows, setNumRows] = useState(0);
@@ -29,9 +34,9 @@ export default function Home() {
     <main className="h-screen bg-gruvbox-dark-bg">
       <Navbar />
       <motion.div
-        className="absolute inset-0 h-9/12 md:h-screen w-full overflow-hidden bg-gradient-to-t from-gruvbox-dark-bg2/10 to-transparent"
+        className="absolute inset-0 w-full overflow-hidden bg-gradient-to-t from-gruvbox-dark-bg2/10 to-transparent"
         initial={false}
-        style={{ opacity: gridOpacity }}
+        style={{ opacity: gridOpacity, height: heroSectionHeight }}
       >
         {/* Vertical Grid Lines */}
         {Array.from({ length: numCols }).map((_, i) => (
@@ -57,7 +62,10 @@ export default function Home() {
           />
         ))}
       </motion.div>
-      <section className="flex h-9/12 flex-col items-center justify-center md:h-screen">
+      <motion.section
+        className="flex flex-col items-center justify-center "
+        style={{ height: heroSectionHeight }}
+      >
         <motion.div
           initial={{ filter: "blur(3px)" }}
           animate={{ filter: "blur(0px)" }}
@@ -126,12 +134,14 @@ export default function Home() {
         >
           <FaAngleDoubleDown size={28} />
         </motion.div>
-      </section>
+      </motion.section>
       <section className="h-screen bg-gruvbox-dark-bg0">
-      <motion.div className="flex">
-        <motion.h2> Projects </motion.h2>
-      </motion.div>
-
+        <motion.div className="flex flex-col">
+          <motion.h2 className="font-bold p-4 text-4xl text-gruvbox-dark-fg0 self-start">
+            {" "}
+            Projects{" "}
+          </motion.h2>
+        </motion.div>
       </section>
     </main>
   );
