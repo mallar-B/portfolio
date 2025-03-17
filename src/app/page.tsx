@@ -1,4 +1,5 @@
 "use client";
+import ContactCard from "@/components/ContactCard";
 import Navbar from "@/components/Navbar";
 import { ProjectGallery } from "@/components/ProjectCard";
 import { motion, useScroll, useTransform } from "motion/react";
@@ -47,7 +48,7 @@ export default function Home() {
       <Navbar />
       {/* Grid */}
       <motion.div
-        className="absolute h-screen inset-0 w-full overflow-hidden bg-gradient-to-t from-gruvbox-dark-bg2/10 to-transparent"
+        className="absolute inset-0 h-screen w-full overflow-hidden bg-gradient-to-t from-gruvbox-dark-bg2/10 to-transparent"
         initial={false}
         style={{ opacity: gridOpacity }}
       >
@@ -78,7 +79,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <motion.section
-        className="flex flex-col items-center h-screen justify-center pb-8 "
+        className="flex h-screen flex-col items-center justify-center pb-8 "
         //style={{ height: heroSectionHeight }}
       >
         <motion.div
@@ -153,9 +154,9 @@ export default function Home() {
       </motion.section>
 
       {/* About Section */}
-      <section className=" bg-gruvbox-dark-bg0 flex flex-col justify-center items-center p-4">
+      <section className=" flex flex-col items-center justify-center bg-gruvbox-dark-bg0 p-4">
         <motion.h2
-          className="font-bold p-4 text-4xl text-gruvbox-dark-fg0 self-start"
+          className="self-start p-4 text-4xl font-bold text-gruvbox-dark-fg0"
           initial={{ opacity: 0, x: -80 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -164,10 +165,11 @@ export default function Home() {
           About Me
         </motion.h2>
         <motion.p
-          className="subpixel-antialiased text-lg break-words px-3.5 text-gruvbox-dark-fg3 mb-4"
+          className="mb-4 px-3.5 text-lg break-words text-gruvbox-dark-fg3 subpixel-antialiased"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{once:true}}
         >
           I'm a software developer with a love for crafting high-performance web
           apps and I'm constantly experimenting with cutting-edge tech.
@@ -179,10 +181,10 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section className=" py-10 bg-gruvbox-dark-bg">
+      <section className="bg-gruvbox-dark-bg py-10">
         <motion.div className="flex flex-col">
           <motion.h2
-            className="font-bold py-4 px-8 text-4xl text-gruvbox-dark-fg0 self-start"
+            className="self-start px-8 py-4 text-4xl font-bold text-gruvbox-dark-fg0"
             initial={{ opacity: 0, x: -80 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -193,6 +195,28 @@ export default function Home() {
           <div>
             <ProjectGallery projects={projects} />
           </div>
+        </motion.div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="bg-gruvbox-dark-bg1 py-10">
+          <motion.h2
+            className="self-start px-8 py-4 text-4xl font-bold text-gruvbox-dark-fg0"
+            initial={{ opacity: 0, x: -80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+          >
+          Get in Touch
+        </motion.h2>
+        <motion.div
+          className="mb-4 px-4 text-lg break-words text-gruvbox-dark-fg3 subpixel-antialiased"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{once:true}}
+        >
+          <ContactCard />
         </motion.div>
       </section>
     </main>
