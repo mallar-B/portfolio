@@ -152,15 +152,41 @@ export default function Home() {
         </motion.div>
       </motion.section>
 
+      {/* About Section */}
+      <section className=" bg-gruvbox-dark-bg0 flex flex-col justify-center items-center p-4">
+        <motion.h2
+          className="font-bold p-4 text-4xl text-gruvbox-dark-fg0 self-start"
+          initial={{ opacity: 0, x: -80 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+        >
+          About Me
+        </motion.h2>
+        <motion.p
+          className="subpixel-antialiased text-lg break-words px-3.5 text-gruvbox-dark-fg3 mb-4"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          I'm a software developer with a love for crafting high-performance web
+          apps and I'm constantly experimenting with cutting-edge tech.
+          <br />
+          <br />I specialize in real-time systems and P2P architecture. I thrive
+          in backend-heavy projects, but I also enjoy bringing UI to life with
+          animations and modern frontend frameworks like Next.js.
+        </motion.p>
+      </section>
+
       {/* Projects Section */}
-      <section className="h-screen bg-gruvbox-dark-bg0">
+      <section className=" py-10 bg-gruvbox-dark-bg">
         <motion.div className="flex flex-col">
           <motion.h2
             className="font-bold py-4 px-8 text-4xl text-gruvbox-dark-fg0 self-start"
             initial={{ opacity: 0, x: -80 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ margin: "0px 0px -100px 0px" }}
+            viewport={{ once: true, margin: "0px 0px -100px 0px" }}
           >
             Projects
           </motion.h2>
@@ -169,8 +195,6 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
-
-      <section></section>
     </main>
   );
 }
