@@ -47,7 +47,7 @@ export default function Home() {
       <Navbar />
       {/* Grid */}
       <motion.div
-        className="absolute inset-0 w-full overflow-hidden bg-gradient-to-t from-gruvbox-dark-bg2/10 to-transparent"
+        className="absolute h-screen inset-0 w-full overflow-hidden bg-gradient-to-t from-gruvbox-dark-bg2/10 to-transparent"
         initial={false}
         style={{ opacity: gridOpacity }}
       >
@@ -57,7 +57,7 @@ export default function Home() {
             key={`v-${i}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.1 }}
-            transition={{ duration: 1, delay: i * 0.05 }}
+            transition={{ duration: 5, delay: i * 0.05 }} // duration 5 so it looks good on mobiles
             className="absolute top-0 bottom-0 w-px bg-gruvbox-dark-fg"
             style={{ left: `${i * gridSize}px` }}
           />

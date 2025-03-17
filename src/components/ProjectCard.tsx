@@ -1,6 +1,6 @@
-import { motion, useInView, Variants } from "motion/react";
+import { motion, useInView } from "motion/react";
 import React from "react";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 
 interface ProjectCardProps {
