@@ -1,5 +1,6 @@
 "use client";
 import Navbar from "@/components/Navbar";
+import { ProjectGallery } from "@/components/ProjectCard";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useEffect, useState } from "react";
 import { FaAngleDoubleDown } from "react-icons/fa";
@@ -7,17 +8,28 @@ import { FaAngleDoubleDown } from "react-icons/fa";
 export default function Home() {
   const scrollValue = useScroll();
   const indicatorOpacity = useTransform(scrollValue.scrollY, [0, 150], [1, 0]);
-  const heroScale = useTransform(scrollValue.scrollY, [0, 250], [1, 0.6]);
+  //const heroScale = useTransform(scrollValue.scrollY, [0, 250], [1, 0.6]);
   const heroOpacity = useTransform(scrollValue.scrollY, [0, 250], [1, 0.2]);
-  const heroSectionHeight = useTransform(
-    scrollValue.scrollY,
-    [0, 250],
-    ["100vh", "60vh"],
-  );
+  //const heroSectionHeight = useTransform(
+  //  scrollValue.scrollY,
+  //  [0, 250],
+  //  ["100vh", "60vh"],
+  //);
   const gridOpacity = useTransform(scrollValue.scrollY, [0, 350], [1, 0]);
   const gridSize = 57;
   const [numCols, setNumCols] = useState(0);
   const [numRows, setNumRows] = useState(0);
+
+  const projects = [
+    {
+      description: "A platform for teaching chess",
+      imageLink: "https://picsum.photos/1920/1080",
+    },
+    {
+      description: "Machine learning application for image recognition",
+      imageLink: "/images/project2.jpg",
+    },
+  ];
 
   useEffect(() => {
     const updateGrid = () => {
@@ -33,10 +45,11 @@ export default function Home() {
   return (
     <main className="h-screen bg-gruvbox-dark-bg">
       <Navbar />
+      {/* Grid */}
       <motion.div
         className="absolute inset-0 w-full overflow-hidden bg-gradient-to-t from-gruvbox-dark-bg2/10 to-transparent"
         initial={false}
-        style={{ opacity: gridOpacity, height: heroSectionHeight }}
+        style={{ opacity: gridOpacity }}
       >
         {/* Vertical Grid Lines */}
         {Array.from({ length: numCols }).map((_, i) => (
@@ -62,16 +75,18 @@ export default function Home() {
           />
         ))}
       </motion.div>
+
+      {/* Hero Section */}
       <motion.section
-        className="flex flex-col items-center justify-center "
-        style={{ height: heroSectionHeight }}
+        className="flex flex-col items-center h-screen justify-center pb-8 "
+        //style={{ height: heroSectionHeight }}
       >
         <motion.div
           initial={{ filter: "blur(3px)" }}
           animate={{ filter: "blur(0px)" }}
           transition={{ delay: 0.5, duration: 0.6 }}
           className="flex flex-col items-center md:items-start"
-          style={{ scale: heroScale, opacity: heroOpacity }}
+          style={{ opacity: heroOpacity }}
         >
           <motion.span
             initial={{ opacity: 0, x: -30 }}
@@ -125,6 +140,7 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
+        {/* Down Arrow*/}
         <motion.div
           className="invisible absolute bottom-10 left-1/2 -translate-x-1/2 transform text-gruvbox-dark-fg3 md:visible"
           initial={{ opacity: 0, repeatCount: 1 }}
@@ -135,14 +151,26 @@ export default function Home() {
           <FaAngleDoubleDown size={28} />
         </motion.div>
       </motion.section>
+
+      {/* Projects Section */}
       <section className="h-screen bg-gruvbox-dark-bg0">
         <motion.div className="flex flex-col">
-          <motion.h2 className="font-bold p-4 text-4xl text-gruvbox-dark-fg0 self-start">
-            {" "}
-            Projects{" "}
+          <motion.h2
+            className="font-bold py-4 px-8 text-4xl text-gruvbox-dark-fg0 self-start"
+            initial={{ opacity: 0, x: -80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ margin: "0px 0px -100px 0px" }}
+          >
+            Projects
           </motion.h2>
+          <div>
+            <ProjectGallery projects={projects} />
+          </div>
         </motion.div>
       </section>
+
+      <section></section>
     </main>
   );
 }
