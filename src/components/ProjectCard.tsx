@@ -34,7 +34,7 @@ const ProjectCard = ({ description, imageLink }: ProjectCardProps) => {
   return (
     <motion.div
       ref={cardRef}
-      className="flex flex-col rounded-sm overflow-hidden shadow-lg w-full bg-transparent"
+      className="flex flex-col rounded-sm overflow-hidden shadow-lg w-full mb-6"
       animate={{
         filter: isInView ? "blur(0px)" : "blur(2px)",
         scale: isInView ? 1.05 : 1,
@@ -43,7 +43,7 @@ const ProjectCard = ({ description, imageLink }: ProjectCardProps) => {
       transition={{ duration: 0.3 }}
     >
       <motion.div className="relative">
-        <div className="relative w-full h-0 pb-[56.25%]">
+        <div className="relative w-full h-0 pb-[56.25%] bg-gruvbox-dark-bg1">
           <img
             src={imageLink}
             alt="Project thumbnail"
@@ -54,7 +54,7 @@ const ProjectCard = ({ description, imageLink }: ProjectCardProps) => {
           </div>
         </div>
       </motion.div>
-      <motion.div className="flex justify-evenly py-4 space-x-2 w-full">
+      <motion.div className="flex justify-evenly py-4 px-2 space-x-4 w-full">
         <motion.button
           animate={{
             scale: isInView ? 1 : 0.95,
@@ -62,7 +62,7 @@ const ProjectCard = ({ description, imageLink }: ProjectCardProps) => {
             backgroundColor: isInView ? "#83a598" : "#282828",
           }}
           whileTap={shakeAnimation}
-          className="space-x-4 border-2 border-gruvbox-dark-fg3 rounded-sm flex items-center font-medium justify-center w-full py-4"
+          className="space-x-4 border-2 border-gruvbox-dark-fg3 rounded-sm flex items-center font-medium justify-center w-full py-2"
         >
           <FaExternalLinkAlt size={20} />
           <span className="text-xl select-none">Site</span>
@@ -74,7 +74,7 @@ const ProjectCard = ({ description, imageLink }: ProjectCardProps) => {
             backgroundColor: isInView ? "#504945" : "#282828",
           }}
           whileTap={shakeAnimation}
-          className="space-x-4 border-2 border-gruvbox-dark-fg3 rounded-sm flex items-center font-medium justify-center w-full py-4"
+          className="space-x-4 border-2 border-gruvbox-dark-fg3 rounded-sm flex items-center font-medium justify-center w-full py-2"
         >
           <FaGithub size={22} />
           <span className="text-xl select-none">Source</span>
