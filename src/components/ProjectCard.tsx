@@ -15,7 +15,7 @@ interface ProjectGalleryProps {
   projects: { description: string; imageLink: string }[];
 }
 
-const shakeAnimation = {
+export const shakeAnimation = {
   scale: 0.95,
   rotate: [-1, 1, -1, 0],
   y: 2,
