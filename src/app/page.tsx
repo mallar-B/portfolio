@@ -1,5 +1,6 @@
 "use client";
 import ContactCard from "@/components/ContactCard";
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { ProjectGallery } from "@/components/ProjectCard";
 import { motion, useScroll, useTransform } from "motion/react";
@@ -25,10 +26,12 @@ export default function Home() {
     {
       description: "A platform for teaching chess",
       imageLink: "https://picsum.photos/1920/1080",
+      videoLink: "/test_1.mp4"
     },
     {
       description: "Machine learning application for image recognition",
       imageLink: "/images/project2.jpg",
+      videoLink: "/test_2.mp4"
     },
   ];
 
@@ -154,7 +157,7 @@ export default function Home() {
       </motion.section>
 
       {/* About Section */}
-      <section className=" flex flex-col items-center justify-center bg-gruvbox-dark-bg0 p-4">
+      <section className=" flex flex-col items-center justify-center bg-gruvbox-dark-bg0 p-4 md:px-[15%] md:py-[5%] ">
         <motion.h2
           className="self-start p-4 text-4xl font-bold text-gruvbox-dark-fg0"
           initial={{ opacity: 0, x: -80 }}
@@ -181,7 +184,7 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section className="bg-gruvbox-dark-bg py-10">
+      <section className="bg-gruvbox-dark-bg py-10 md:px-[15%] md:py-[5%]">
         <motion.div className="flex flex-col">
           <motion.h2
             className="self-start px-8 py-4 text-4xl font-bold text-gruvbox-dark-fg0"
@@ -219,6 +222,7 @@ export default function Home() {
           <ContactCard />
         </motion.div>
       </section>
+      <Footer />
     </main>
   );
 }

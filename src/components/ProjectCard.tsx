@@ -1,6 +1,7 @@
-import { motion, useInView } from "motion/react";
-import React from "react";
+import { AnimatePresence, motion, useInView } from "motion/react";
+import React, { useEffect, useState } from "react";
 import { useRef } from "react";
+import { createPortal } from "react-dom";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 
 interface ProjectCardProps {
@@ -12,7 +13,11 @@ interface ProjectCardProps {
 }
 
 interface ProjectGalleryProps {
-  projects: { description: string; imageLink: string }[];
+  projects: { description: string; imageLink: string; videoLink: string }[];
+}
+
+interface VideoCardProps {
+  videoLink: string | undefined;
 }
 
 export const shakeAnimation = {
@@ -27,9 +32,77 @@ export const shakeAnimation = {
     rotate: { duration: 0.2 },
   },
 };
-const ProjectCard = ({ description, imageLink }: ProjectCardProps) => {
-  const cardRef = useRef(null);
-  const isInView = useInView(cardRef, { amount: 0.95 });
+
+const VideoCard = ({ videoLink }: VideoCardProps) => {
+  if (!videoLink) return null;
+
+  return createPortal(
+    <div
+      className="fixed inset-0 flex items-center justify-center z-40 translate-x-64 xl:translate-x-80"
+      style={{ perspective: "1200px" }}
+    >
+      <motion.div
+        className="w-[40%] aspect-16/11 bg-transparent text-white rounded-lg z-50 "
+        style={{
+          transformStyle: "preserve-3d",
+          transformOrigin: "center center",
+        }}
+        initial={{ rotateY: 0, z: -300, opacity: 0 }}
+        animate={{ rotateX: 10, rotateY: -15, z: 0, opacity: 1 }}
+        exit={{ rotateY: 60, z: -300, opacity: 0 }}
+        transition={{
+          type: "spring",
+          stiffness: 100,
+          damping: 15,
+        }}
+      >
+        <motion.video
+          src={videoLink}
+          autoPlay
+          loop
+          muted
+          className="w-full h-full object-fill rounded-lg shadow-xl"
+          style={{ backfaceVisibility: "hidden" }}
+        />
+      </motion.div>
+    </div>,
+    document.body,
+  );
+};
+
+const ProjectCard = ({
+  description,
+  imageLink,
+  videoLink,
+}: ProjectCardProps) => {
+  const [isBigScreen, setIsBigScreen] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(cardRef, { amount: 0.9 });
+  const bigScreenIsInView = useInView(cardRef, { amount: 0.5 });
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsBigScreen(window.innerWidth >= 1024);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
+  if (isBigScreen) {
+    return (
+      <motion.div ref={cardRef}>
+        <AnimatePresence>
+          {bigScreenIsInView ? (
+            <VideoCard videoLink={videoLink} key={videoLink} />
+          ) : null}
+        </AnimatePresence>
+        <motion.div className="flex rounded-sm overflow-hidden border border-amber-50  w-full mb-6">
+        </motion.div>
+      </motion.div>
+    );
+  }
 
   return (
     <motion.div
@@ -93,6 +166,7 @@ const ProjectGallery = ({ projects }: ProjectGalleryProps) => {
             key={index + 1}
             description={project.description}
             imageLink={project.imageLink}
+            videoLink={project.videoLink}
           />
         </div>
       ))}
