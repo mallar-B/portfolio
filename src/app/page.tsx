@@ -3,6 +3,7 @@ import ContactCard from "@/components/ContactCard";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { ProjectGallery } from "@/components/ProjectCard";
+import TagLine from "@/components/TagLine";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useEffect, useState } from "react";
 import { FaAngleDoubleDown } from "react-icons/fa";
@@ -151,14 +152,7 @@ export default function Home() {
           >
             Mallar Bhattacharya
           </motion.h1>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="self-center px-10 pt-2 font-mono text-lg text-gruvbox-dark-orange shadow-2xl shadow-gruvbox-dark-bg0 md:text-xl"
-          >
-            Full Stack Developer
-          </motion.h2>
+          <TagLine />
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
