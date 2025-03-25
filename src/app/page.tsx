@@ -24,14 +24,57 @@ export default function Home() {
 
   const projects = [
     {
-      description: "A platform for teaching chess",
+      description: {
+        title: "Chess-Room",
+        description: "A platform for teaching chess",
+        about: (
+          <div>
+            A SaaS-based virtual classroom platform where users can register as
+            either a teacher or a student, enabling interactive and controlled
+            learning environments.
+            <br />
+            <br />
+            <span className="text-xl font-extrabold underline">
+              Highlights:
+            </span>
+            <ul className="list-disc pl-8 pt-2">
+              <li className="py-1">
+                <span className="font-bold">Interactive Virtual Board:</span>{" "}
+                Real-time collaboration with fine-grained access control.
+                Enable/disable actions like drawing, solving problems, or making
+                moves.{" "}
+              </li>
+              <li className="py-1">
+                <span className="font-bold"> Real-Time Communication:</span>{" "}
+                Leveraged WebSockets and Agora RTC for low-latency (
+                <strong>&lt;50ms</strong>) interaction.
+              </li>
+              <li className="py-1">
+                <span className="font-bold">
+                  Role-Based Dynamic Access Control:
+                </span>{" "}
+                Teacher can manage classroom behavior, audio/video permissions,
+                and student interactions. Control who can make moves on the
+                virtual board and participate in discussions.
+              </li>
+              <li className="py-1">
+                <span className="font-bold">SaaS Architecture:</span> Scalable
+                to support multiple classrooms and institutions simultaneously.
+              </li>
+            </ul>
+          </div>
+        ),
+        techStacks: [
+          "Next.js",
+          " Node.js",
+          "Socket.io",
+          "PostgreSQL",
+          "OAuth2.0",
+          "Zustand",
+        ],
+      },
       imageLink: "https://picsum.photos/1920/1080",
-      videoLink: "/test_1.mp4"
-    },
-    {
-      description: "Machine learning application for image recognition",
-      imageLink: "/images/project2.jpg",
-      videoLink: "/test_2.mp4"
+      videoLink: "/test_1.mp4",
     },
   ];
 
@@ -172,7 +215,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{once:true}}
+          viewport={{ once: true }}
         >
           I'm a software developer with a love for crafting high-performance web
           apps and I'm constantly experimenting with cutting-edge tech.
@@ -184,7 +227,7 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section className="bg-gruvbox-dark-bg py-10 md:px-[15%] md:py-[5%]">
+      <section className="bg-gruvbox-dark-bg py-10 md:px-[15%] md:py-[5%] lg:pl-10 xl:px-[10%]">
         <motion.div className="flex flex-col">
           <motion.h2
             className="self-start px-8 py-4 text-4xl font-bold text-gruvbox-dark-fg0"
@@ -203,13 +246,13 @@ export default function Home() {
 
       {/* Contact Section */}
       <section className="bg-gruvbox-dark-bg1 py-10">
-          <motion.h2
-            className="self-start px-8 py-4 text-4xl font-bold text-gruvbox-dark-fg0"
-            initial={{ opacity: 0, x: -80 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, margin: "0px 0px -100px 0px" }}
-          >
+        <motion.h2
+          className="self-start px-8 py-4 text-4xl font-bold text-gruvbox-dark-fg0"
+          initial={{ opacity: 0, x: -80 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+        >
           Get in Touch
         </motion.h2>
         <motion.div
@@ -217,7 +260,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{once:true}}
+          viewport={{ once: true }}
         >
           <ContactCard />
         </motion.div>

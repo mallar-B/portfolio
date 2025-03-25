@@ -1,19 +1,31 @@
 import { AnimatePresence, motion, useInView } from "motion/react";
-import React, { useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { useRef } from "react";
 import { createPortal } from "react-dom";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 
 interface ProjectCardProps {
+  title: string;
+  about: ReactNode;
   description: string;
   videoLink?: string;
   imageLink?: string;
   hostedLink?: string;
   githubLink?: string;
+  techStacks: string[];
 }
 
 interface ProjectGalleryProps {
-  projects: { description: string; imageLink: string; videoLink: string }[];
+  projects: {
+    description: {
+      title: string;
+      description: string;
+      about: ReactNode;
+      techStacks: string[];
+    };
+    imageLink: string;
+    videoLink: string;
+  }[];
 }
 
 interface VideoCardProps {
@@ -38,11 +50,11 @@ const VideoCard = ({ videoLink }: VideoCardProps) => {
 
   return createPortal(
     <div
-      className="fixed inset-0 flex items-center justify-center z-40 translate-x-64 xl:translate-x-80"
+      className="fixed inset-0 flex items-center justify-center translate-x-64 -translate-y-16 xl:translate-x-96"
       style={{ perspective: "1200px" }}
     >
       <motion.div
-        className="w-[40%] aspect-16/11 bg-transparent text-white rounded-lg z-50 "
+        className="w-[40%] aspect-16/11 bg-transparent text-white rounded-lg z-0 "
         style={{
           transformStyle: "preserve-3d",
           transformOrigin: "center center",
@@ -70,15 +82,35 @@ const VideoCard = ({ videoLink }: VideoCardProps) => {
   );
 };
 
+const TechStackPills = ({ techStacks }: { techStacks: string[] }) => {
+  return (
+    <div className="flex flex-wrap gap-2 translate-y-8 ">
+      {techStacks.map((stack, index) => (
+        <motion.span
+          key={index}
+          className="bg-gruvbox-dark-purple text-gruvbox-dark-fg0 text-md font-mono font-extrabold px-3 py-1 rounded-sm shadow-md cursor-pointer transition-all hover:bg-gray-700"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          {stack}
+        </motion.span>
+      ))}
+    </div>
+  );
+};
+
 const ProjectCard = ({
+  about,
   description,
   imageLink,
+  title,
   videoLink,
+  techStacks,
 }: ProjectCardProps) => {
   const [isBigScreen, setIsBigScreen] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(cardRef, { amount: 0.9 });
-  const bigScreenIsInView = useInView(cardRef, { amount: 0.5 });
+  const bigScreenIsInView = useInView(cardRef, { amount: 0.7 });
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -92,13 +124,42 @@ const ProjectCard = ({
 
   if (isBigScreen) {
     return (
-      <motion.div ref={cardRef}>
+      <motion.div ref={cardRef} className="flex flex-col">
+        {/* VideoCard */}
         <AnimatePresence>
           {bigScreenIsInView ? (
             <VideoCard videoLink={videoLink} key={videoLink} />
           ) : null}
         </AnimatePresence>
-        <motion.div className="flex rounded-sm overflow-hidden border border-amber-50  w-full mb-6">
+
+        {/* Description */}
+        <motion.div className="relative text-gruvbox-dark-fg2 px-10 py-20 bg-gruvbox-dark-bg0 w-1/2 max-w-xl shadow-lg shadow-gruvbox-dark-bg0 border-gruvbox-dark-fg3 border rounded-sm">
+          <hr className="p-4 border-t-2 border-gruvbox-dark-yellow" />
+          <h2 className="absolute top-7 left-9 font-black text-3xl text-gruvbox-dark-aqua font-mono">
+            {title}
+          </h2>
+          <h6>{about}</h6>
+          <TechStackPills techStacks={techStacks} />
+          <div className="relative z-10">
+            <div className="translate-y-8 pt-10 flex space-x-4">
+              <motion.button
+                initial={{ rotate: 0, y: 0 }}
+                whileTap={shakeAnimation}
+                className="space-x-4 border-2 bg-gruvbox-dark-blue border-gruvbox-dark-fg3 rounded-sm flex items-center font-medium justify-center w-full py-2"
+              >
+                <FaExternalLinkAlt size={20} />
+                <span className="text-xl select-none">Site</span>
+              </motion.button>
+              <motion.button
+                initial={{ rotate: 0, y: 0 }}
+                whileTap={shakeAnimation}
+                className="space-x-4 border-2 border-gruvbox-dark-fg3 text-gruvbox-dark-blue rounded-sm flex items-center font-medium justify-center w-full py-2"
+              >
+                <FaGithub size={22} />
+                <span className="text-xl select-none">Source</span>
+              </motion.button>
+            </div>
+          </div>
         </motion.div>
       </motion.div>
     );
@@ -164,9 +225,12 @@ const ProjectGallery = ({ projects }: ProjectGalleryProps) => {
         <div key={index} className="m-4 w-full px-10">
           <ProjectCard
             key={index + 1}
-            description={project.description}
+            title={project.description.title}
+            description={project.description.description}
+            about={project.description.about}
             imageLink={project.imageLink}
             videoLink={project.videoLink}
+            techStacks={project.description.techStacks}
           />
         </div>
       ))}
