@@ -202,7 +202,7 @@ export default function Home() {
       {/* About Section */}
       <section className=" flex flex-col items-center justify-center bg-gruvbox-dark-bg0 p-4 md:px-[15%] md:py-[5%] ">
         <motion.h2
-          className="self-start p-4 text-4xl font-bold text-gruvbox-dark-fg0"
+          className="self-start p-4 text-4xl font-bold text-gruvbox-dark-fg0 lg:self-center lg:pb-10 lg:text-5xl"
           initial={{ opacity: 0, x: -80 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -210,8 +210,9 @@ export default function Home() {
         >
           About Me
         </motion.h2>
+        <motion.hr />
         <motion.p
-          className="mb-4 px-3.5 text-lg break-words text-gruvbox-dark-fg3 subpixel-antialiased"
+          className="mb-4 px-3.5 text-lg break-words text-gruvbox-dark-fg3 subpixel-antialiased xl:px-30 lg:px-20"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -227,10 +228,10 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section className="bg-gruvbox-dark-bg py-10 md:px-[15%] md:py-[5%] lg:pl-10 xl:px-[10%]">
+      <section className="bg-gruvbox-dark-bg py-10 md:px-[15%] md:py-[5%] lg:px-10 xl:px-[10%]">
         <motion.div className="flex flex-col">
           <motion.h2
-            className="self-start px-8 py-4 text-4xl font-bold text-gruvbox-dark-fg0"
+            className="self-start px-8 py-4 text-4xl font-bold text-gruvbox-dark-fg0 lg:self-center lg:pb-20 lg:text-5xl"
             initial={{ opacity: 0, x: -80 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -247,7 +248,7 @@ export default function Home() {
       {/* Contact Section */}
       <section className="bg-gruvbox-dark-bg1 py-10">
         <motion.h2
-          className="self-start px-8 py-4 text-4xl font-bold text-gruvbox-dark-fg0"
+          className="self-start px-8 py-4 text-4xl font-bold text-gruvbox-dark-fg0 lg:text-center"
           initial={{ opacity: 0, x: -80 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -255,6 +256,7 @@ export default function Home() {
         >
           Get in Touch
         </motion.h2>
+        <div className="border-b-2 border-[#fb4934] mb-8 mx-4"></div>
         <motion.div
           className="mb-4 px-4 text-lg break-words text-gruvbox-dark-fg3 subpixel-antialiased"
           initial={{ opacity: 0, y: 40 }}

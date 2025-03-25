@@ -1,7 +1,6 @@
-import clsx from "clsx";
 import { motion } from "motion/react";
 import { JSX } from "react";
-import { FaGithub, FaTwitter, FaLinkedinIn, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn, FaEnvelope } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { shakeAnimation } from "./ProjectCard";
 
@@ -46,7 +45,6 @@ const LinkBox = ({
 const ContactCard = () => {
   return (
     <>
-      <div className="border-b-2 border-gruvbox-dark-yellow mb-8"></div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 px-4 pb-4">
         {/* GitHub */}
         <LinkBox
