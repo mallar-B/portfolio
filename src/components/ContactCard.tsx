@@ -30,13 +30,13 @@ const LinkBox = ({
         className="flex items-center p-4 bg-gruvbox-dark-bg2 rounded-sm transition-all duration-300 hover:bg-gruvbox-dark-bg3 group"
       >
         <div
-          className={`w-12 h-12 flex items-center justify-center bg-gruvbox-dark-bg rounded-full mr-4 ${iconColorClass} ${iconHoverColorClass}`}
+          className={`shrink-0 w-12 h-12 flex items-center justify-center bg-gruvbox-dark-bg rounded-full mr-4 ${iconColorClass} ${iconHoverColorClass}`}
         >
           {icon}
         </div>
-        <div>
+        <div className="min-w-0">
           <h3 className="text-gruvbox-dark-fg0 font-mono text-lg">{title}</h3>
-          <p className="text-gruvbox-dark-fg4 text-sm">{username}</p>
+          <p className="text-gruvbox-dark-fg4 text-sm truncate">{username}</p>
         </div>
       </a>
     </motion.div>
