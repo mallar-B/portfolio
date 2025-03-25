@@ -54,14 +54,14 @@ const VideoCard = ({ videoLink }: VideoCardProps) => {
       style={{ perspective: "1200px" }}
     >
       <motion.div
-        className="w-[40%] aspect-16/11 bg-transparent text-white rounded-lg z-0 "
+        className="border-[5px] border-gruvbox-dark-orange w-[40%] aspect-16/11 bg-transparent text-white rounded-none z-0 "
         style={{
           transformStyle: "preserve-3d",
           transformOrigin: "center center",
         }}
-        initial={{ rotateY: 0, z: -300, opacity: 0 }}
-        animate={{ rotateX: 10, rotateY: -15, z: 0, opacity: 1 }}
-        exit={{ rotateY: 60, z: -300, opacity: 0 }}
+        initial={{ rotateX: 25, rotateZ: 5, rotateY: -15, z: -150,x:150, opacity: 0 }}
+        animate={{ rotateZ: 0, rotateX: 10, rotateY: -15, z: 0, x:0,opacity: 1 }}
+        exit={{ rotateX: 25, rotateZ: 5, rotateY: -15, z: -150, x:150,opacity: 0 }}
         transition={{
           type: "spring",
           stiffness: 100,
@@ -73,7 +73,7 @@ const VideoCard = ({ videoLink }: VideoCardProps) => {
           autoPlay
           loop
           muted
-          className="w-full h-full object-fill rounded-lg shadow-xl"
+          className="w-full h-full object-fill rounded-none shadow-xl"
           style={{ backfaceVisibility: "hidden" }}
         />
       </motion.div>
