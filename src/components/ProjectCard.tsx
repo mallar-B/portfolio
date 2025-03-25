@@ -59,9 +59,30 @@ const VideoCard = ({ videoLink }: VideoCardProps) => {
           transformStyle: "preserve-3d",
           transformOrigin: "center center",
         }}
-        initial={{ rotateX: 25, rotateZ: 5, rotateY: -15, z: -150,x:150, opacity: 0 }}
-        animate={{ rotateZ: 0, rotateX: 10, rotateY: -15, z: 0, x:0,opacity: 1 }}
-        exit={{ rotateX: 25, rotateZ: 5, rotateY: -15, z: -150, x:150,opacity: 0 }}
+        initial={{
+          rotateX: 25,
+          rotateZ: 5,
+          rotateY: -15,
+          z: -150,
+          x: 150,
+          opacity: 0,
+        }}
+        animate={{
+          rotateZ: 0,
+          rotateX: 10,
+          rotateY: -15,
+          z: 0,
+          x: 0,
+          opacity: 1,
+        }}
+        exit={{
+          rotateX: 25,
+          rotateZ: 5,
+          rotateY: -15,
+          z: -150,
+          x: 150,
+          opacity: 0,
+        }}
         transition={{
           type: "spring",
           stiffness: 100,
@@ -190,6 +211,7 @@ const ProjectCard = ({
       </motion.div>
       <motion.div className="flex justify-evenly py-4 px-2 space-x-4 w-full">
         <motion.button
+          initial={{ rotate: 0, y: 0 }}
           animate={{
             scale: isInView ? 1 : 0.95,
             zIndex: isInView ? 10 : 1,
@@ -202,6 +224,7 @@ const ProjectCard = ({
           <span className="text-xl select-none">Site</span>
         </motion.button>
         <motion.button
+          initial={{ rotate: 0, y: 0 }}
           animate={{
             scale: isInView ? 1 : 0.95,
             zIndex: isInView ? 10 : 1,

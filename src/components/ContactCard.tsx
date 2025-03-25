@@ -22,7 +22,7 @@ const LinkBox = ({
   iconHoverColorClass,
 }: LinkBoxProps) => {
   return (
-    <motion.div whileTap={shakeAnimation}>
+    <motion.div whileTap={shakeAnimation} initial={{ rotate: 0, y: 0 }}>
       <a
         href={`${url}`}
         target="_blank"
