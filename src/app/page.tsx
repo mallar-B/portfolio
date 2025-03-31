@@ -74,8 +74,8 @@ export default function Home() {
           "Zustand",
         ],
       },
-      imageLink: "https://picsum.photos/1920/1080",
-      videoLink: "/test_1.mp4",
+      imageLink: "chess_room_ss.jpg",
+      videoLink: "/chess_room_video.mp4",
     },
   ];
 
@@ -126,6 +126,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <motion.section
+        id="hero"
         className="flex h-screen flex-col items-center justify-center pb-8 "
         //style={{ height: heroSectionHeight }}
       >
@@ -194,7 +195,10 @@ export default function Home() {
       </motion.section>
 
       {/* About Section */}
-      <section className=" flex flex-col items-center justify-center bg-gruvbox-dark-bg0 p-4 md:px-[15%] md:py-[5%] ">
+      <section
+        id="about"
+        className=" flex flex-col items-center justify-center bg-gruvbox-dark-bg0 p-4 md:px-[15%] md:py-[5%] "
+      >
         <motion.h2
           className="self-start p-4 text-4xl font-bold text-gruvbox-dark-fg0 lg:self-center lg:pb-10 lg:text-5xl"
           initial={{ opacity: 0, x: -80 }}
@@ -222,7 +226,10 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section className="bg-gruvbox-dark-bg py-10 md:px-[15%] md:py-[5%] lg:px-10 xl:px-[10%]">
+      <section
+        id="projects"
+        className="bg-gruvbox-dark-bg py-10 md:px-[15%] md:py-[5%] lg:px-10 xl:px-[10%]"
+      >
         <motion.div className="flex flex-col">
           <motion.h2
             className="self-start px-8 py-4 text-4xl font-bold text-gruvbox-dark-fg0 lg:self-center lg:pb-20 lg:text-5xl"
@@ -240,7 +247,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section className="bg-gruvbox-dark-bg1 py-10">
+      <section id="contact" className="bg-gruvbox-dark-bg1 py-10">
         <motion.h2
           className="self-start px-8 py-4 text-4xl font-bold text-gruvbox-dark-fg0 lg:text-center"
           initial={{ opacity: 0, x: -80 }}

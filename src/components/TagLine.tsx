@@ -3,11 +3,9 @@ import { useEffect, useState } from "react";
 
 const tagLines = [
   "Full Stack Developer",
-  "Software Architect",
-  "DevOps Engineer",
-  "Continuous Learner",
   "Open Source Contributer",
-  "Problem Solver",
+  "DevOps Engineer",
+  "Nixos Enthusiast",
   "Linux Ricer",
   "Neovim Enjoyer"
 ];

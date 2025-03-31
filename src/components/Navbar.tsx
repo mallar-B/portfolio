@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Navbar = () => {
@@ -32,9 +33,26 @@ const Navbar = () => {
       {/* Navigation */}
       <nav className="font-black text-gruvbox-light-bg0">
         <ul className="flex space-x-4 md:space-x-12">
-          <li className="text-sm md:text-base">home</li>
-          <li className="text-sm md:text-base">about</li>
-          <li className="text-sm md:text-base">contact</li>
+          <li className="text-sm md:text-base">
+            <Link href="#hero">Home</Link>
+          </li>
+          <li className="text-sm md:text-base">
+            <Link
+              href="#about"
+              scroll={true}
+              onClick={() => {
+                document
+                  .getElementById("about")
+                  ?.scrollIntoView({ behavior: "smooth" });
+                window.history.replaceState(null, "", `#about`);
+              }}
+            >
+              About
+            </Link>
+          </li>
+          <li className="text-sm md:text-base">
+            <Link href="#contact">Contact</Link>
+          </li>
         </ul>
       </nav>
     </motion.header>
