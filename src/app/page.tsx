@@ -9,6 +9,34 @@ import { useEffect, useState } from "react";
 import { FaAngleDoubleDown } from "react-icons/fa";
 
 export default function Home() {
+  useEffect(() => {
+    const handleSmoothScroll = (e: Event) => {
+      e.preventDefault();
+      const targetId = (e.currentTarget as HTMLAnchorElement)
+        .getAttribute("href")
+        ?.substring(1);
+      const targetElement = document.getElementById(targetId as string);
+
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop,
+          behavior: "smooth",
+        });
+      }
+    };
+
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+    anchorLinks.forEach((link) => {
+      link.addEventListener("click", handleSmoothScroll);
+    });
+
+    return () => {
+      anchorLinks.forEach((link) => {
+        link.removeEventListener("click", handleSmoothScroll);
+      });
+    };
+  }, []);
+
   const scrollValue = useScroll();
   const indicatorOpacity = useTransform(scrollValue.scrollY, [0, 150], [1, 0]);
   //const heroScale = useTransform(scrollValue.scrollY, [0, 250], [1, 0.6]);
