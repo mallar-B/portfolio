@@ -54,7 +54,7 @@ const VideoCard = ({ videoLink }: VideoCardProps) => {
       style={{ perspective: "1200px" }}
     >
       <motion.div
-        className="border-[5px] border-gruvbox-dark-orange w-[40%] aspect-16/11 bg-transparent text-white rounded-none z-0 "
+        className="border-[5px] border-gruvbox-dark-fg3 w-[40%] aspect-16/11 bg-transparent text-white rounded-none z-0 "
         style={{
           transformStyle: "preserve-3d",
           transformOrigin: "center center",

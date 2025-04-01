@@ -26,7 +26,8 @@ const Navbar = () => {
       transition={{ delay: 0.5, duration: 0.6 }}
     >
       {/* Logo */}
-      <span className="text-xl md:text-2xl font-extrabold text-gruvbox-light-bg0">
+      <img src="/logo.svg" alt="Logo" className="w-20 md:hidden" />
+      <span className="text-xl md:text-3xl font-extrabold text-gruvbox-light-bg0 hidden md:block">
         Mallar B.
       </span>
 
