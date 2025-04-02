@@ -204,8 +204,8 @@ const ProjectCard = ({
             alt="Project thumbnail"
             className="absolute top-0 left-0 w-full h-full object-cover"
           />
-          <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-gruvbox-dark-bg/80 to-transparent">
-            <p className="text-sm text-gruvbox-dark-fg0">{description}</p>
+          <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t black/80 to-transparent">
+            <p className="text-sm text-[#fbf1c7]">{description}</p>
           </div>
         </div>
       </motion.div>

@@ -155,14 +155,14 @@ export default function Home() {
       {/* Hero Section */}
       <motion.section
         id="hero"
-        className="flex h-screen flex-col items-center justify-center pb-8 "
+        className="flex h-screen flex-col items-center justify-center pb-8"
         //style={{ height: heroSectionHeight }}
       >
         <motion.div
           initial={{ filter: "blur(3px)" }}
           animate={{ filter: "blur(0px)" }}
           transition={{ delay: 0.5, duration: 0.6 }}
-          className="flex flex-col items-center md:items-start"
+          className="flex flex-col items-center md:items-start "
           style={{ opacity: heroOpacity }}
         >
           <motion.span
