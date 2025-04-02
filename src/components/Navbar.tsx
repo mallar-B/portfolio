@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
+import Image from "next/image";
 
 const ThemeToggle = () => {
   const [theme, setTheme] = useState("dark");
@@ -66,7 +67,7 @@ const Navbar = () => {
       transition={{ delay: 0.5, duration: 0.6 }}
     >
       {/* Logo */}
-      <img src="/logo.svg" alt="Logo" className="w-20 md:hidden" />
+      <Image src="/logo.svg" width={40} height={40} alt="Logo" className="w-20 md:hidden" />
       <span className="text-xl md:text-3xl font-extrabold text-gruvbox-dark-fg0 hidden md:block">
         Mallar B.
       </span>

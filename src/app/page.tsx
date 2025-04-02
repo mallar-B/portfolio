@@ -102,7 +102,7 @@ export default function Home() {
           "Zustand",
         ],
       },
-      imageLink: "chess_room_ss.jpg",
+      imageLink: "/chess_room_ss.jpg",
       videoLink: "/chess_room_video.mp4",
     },
   ];
@@ -171,7 +171,7 @@ export default function Home() {
             transition={{ duration: 0.3, delay: 0.2 }}
             className="p-1 text-xl font-bold text-gruvbox-dark-fg2 shadow-2xl shadow-gruvbox-dark-bg0 md:text-2xl"
           >
-            Hello, I'm
+            Hello, I&apos;m
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, x: 30 }}
@@ -198,7 +198,7 @@ export default function Home() {
               whileTap={{ scale: 0.95 }}
               className="m-2 cursor-pointer rounded-sm border-2 border-gruvbox-dark-orange bg-gruvbox-dark-orange px-4 py-2.5"
             >
-              Let's Connect
+              Let&apos;s Connect
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -244,8 +244,8 @@ export default function Home() {
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          I'm a software developer with a love for crafting high-performance web
-          apps and I'm constantly experimenting with cutting-edge tech.
+          I&apos;m a software developer with a love for crafting high-performance web
+          apps and I&apos;m constantly experimenting with cutting-edge tech.
           <br />
           <br />I specialize in real-time systems and P2P architecture. I thrive
           in backend-heavy projects, but I also enjoy bringing UI to life with

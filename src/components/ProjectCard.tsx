@@ -3,6 +3,7 @@ import React, { ReactNode, useEffect, useState } from "react";
 import { useRef } from "react";
 import { createPortal } from "react-dom";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import Image from "next/image";
 
 interface ProjectCardProps {
   title: string;
@@ -199,8 +200,9 @@ const ProjectCard = ({
     >
       <motion.div className="relative">
         <div className="relative w-full h-0 pb-[56.25%] bg-gruvbox-dark-bg1">
-          <img
-            src={imageLink}
+          <Image
+            fill
+            src={imageLink as string}
             alt="Project thumbnail"
             className="absolute top-0 left-0 w-full h-full object-cover"
           />
