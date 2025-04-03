@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import Link from "next/link";
 
-const MobileMenu = () => {
+const MobileMenu = ({onClick}: {onClick: () => void}) => {
   const items = ["Home", "About", "Projects", "Contact"];
   return (
     <motion.ul
@@ -10,6 +10,7 @@ const MobileMenu = () => {
       animate={{ height: "auto" }}
       exit={{ height: 0 }}
       transition={{ duration: 0.3, ease: [0.31, 0.53, 0.82, 0.67] }}
+      onClick={onClick}
     >
       {items.map((item, index) => (
         <Link href={`#${item.toLowerCase()}`} key={index}>

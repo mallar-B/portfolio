@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import { ProjectGallery } from "@/components/ProjectCard";
 import TagLine from "@/components/TagLine";
 import { motion, useScroll, useTransform } from "motion/react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaAngleDoubleDown } from "react-icons/fa";
 
@@ -104,6 +105,8 @@ export default function Home() {
       },
       imageLink: "/chess_room_ss.jpg",
       videoLink: "/chess_room_video.mp4",
+      siteLink: "https://chessroom-ubny.onrender.com/",
+      sourceLink: "https://github.com/mallar-B",
     },
   ];
 
@@ -191,22 +194,26 @@ export default function Home() {
               type: "spring",
               stiffness: 80,
             }}
-            className="mt-4 flex w-full flex-col justify-around self-center bg-gruvbox-dark-bg shadow-2xl shadow-gruvbox-dark-bg0 md:w-1/2 md:flex-row"
+            className="mt-4 flex w-full flex-col justify-around self-center bg-gruvbox-dark-bg shadow-2xl shadow-gruvbox-dark-bg0 md:w-1/2 md:flex-row md:space-x-2"
           >
+            <Link href="#contact">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="m-2 w-full cursor-pointer rounded-sm border-2 border-gruvbox-dark-orange bg-gruvbox-dark-orange px-4 py-2.5"
+              >
+                Let&apos;s Connect
+              </motion.button>
+            </Link>
+            <Link href="#projects">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="m-2 cursor-pointer rounded-sm border-2 border-gruvbox-dark-orange bg-gruvbox-dark-orange px-4 py-2.5"
-            >
-              Let&apos;s Connect
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="m-2 cursor-pointer rounded-sm border-2 border-gruvbox-dark-orange px-4 py-2.5 text-gruvbox-dark-orange"
+              className="m-2 cursor-pointer w-full rounded-sm border-2 border-gruvbox-dark-orange px-4 py-2.5 text-gruvbox-dark-orange"
             >
               View My Work
             </motion.button>
+            </Link>
           </motion.div>
         </motion.div>
 
@@ -244,8 +251,9 @@ export default function Home() {
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          I&apos;m a software developer with a love for crafting high-performance web
-          apps and I&apos;m constantly experimenting with cutting-edge tech.
+          I&apos;m a software developer with a love for crafting
+          high-performance web apps and I&apos;m constantly experimenting with
+          cutting-edge tech.
           <br />
           <br />I specialize in real-time systems and P2P architecture. I thrive
           in backend-heavy projects, but I also enjoy bringing UI to life with

@@ -57,7 +57,7 @@ const ContactCard = () => {
         />
         {/* X */}
         <LinkBox
-          url="https://x.com/0human07"
+          url="https://x.com/mallar_Bh"
           icon={<FaXTwitter size={24} />}
           iconColorClass="text-gruvbox-dark-orange"
           iconHoverColorClass="group-hover:text-[#fe8019]"

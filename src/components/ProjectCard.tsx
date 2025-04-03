@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { createPortal } from "react-dom";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 import Image from "next/image";
+import Link from "next/link";
 
 interface ProjectCardProps {
   title: string;
@@ -11,8 +12,8 @@ interface ProjectCardProps {
   description: string;
   videoLink?: string;
   imageLink?: string;
-  hostedLink?: string;
-  githubLink?: string;
+  siteLink?: string;
+  sourceLink?: string;
   techStacks: string[];
 }
 
@@ -26,6 +27,8 @@ interface ProjectGalleryProps {
     };
     imageLink: string;
     videoLink: string;
+    siteLink: string;
+    sourceLink: string;
   }[];
 }
 
@@ -128,6 +131,8 @@ const ProjectCard = ({
   title,
   videoLink,
   techStacks,
+  siteLink,
+  sourceLink,
 }: ProjectCardProps) => {
   const [isBigScreen, setIsBigScreen] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -164,22 +169,30 @@ const ProjectCard = ({
           <TechStackPills techStacks={techStacks} />
           <div className="relative z-10">
             <div className="translate-y-8 pt-10 flex space-x-4">
-              <motion.button
-                initial={{ rotate: 0, y: 0 }}
-                whileTap={shakeAnimation}
-                className="space-x-4 border-2 bg-gruvbox-dark-blue border-gruvbox-dark-fg3 rounded-sm flex items-center font-medium justify-center w-full py-2"
-              >
-                <FaExternalLinkAlt size={20} />
-                <span className="text-xl select-none">Site</span>
-              </motion.button>
-              <motion.button
-                initial={{ rotate: 0, y: 0 }}
-                whileTap={shakeAnimation}
-                className="space-x-4 border-2 border-gruvbox-dark-fg3 text-gruvbox-dark-blue rounded-sm flex items-center font-medium justify-center w-full py-2"
-              >
-                <FaGithub size={22} />
-                <span className="text-xl select-none">Source</span>
-              </motion.button>
+              <Link href={siteLink as string} passHref legacyBehavior>
+                <a target="_blank" rel="noopener noreferrer" className="w-full">
+                  <motion.button
+                    initial={{ rotate: 0, y: 0 }}
+                    whileTap={shakeAnimation}
+                    className="space-x-4 border-2 bg-gruvbox-dark-blue border-gruvbox-dark-fg3 rounded-sm flex items-center font-medium justify-center w-full py-2"
+                  >
+                    <FaExternalLinkAlt size={20} />
+                    <span className="text-xl select-none">Site</span>
+                  </motion.button>
+                </a>
+              </Link>
+              <Link href={sourceLink as string} passHref legacyBehavior>
+                <a target="_blank" rel="noopener noreferrer" className="w-full">
+                  <motion.button
+                    initial={{ rotate: 0, y: 0 }}
+                    whileTap={shakeAnimation}
+                    className="space-x-4 border-2 border-gruvbox-dark-fg3 text-gruvbox-dark-blue rounded-sm flex items-center font-medium justify-center w-full py-2"
+                  >
+                    <FaGithub size={22} />
+                    <span className="text-xl select-none">Source</span>
+                  </motion.button>
+                </a>
+              </Link>
             </div>
           </div>
         </motion.div>
@@ -212,32 +225,40 @@ const ProjectCard = ({
         </div>
       </motion.div>
       <motion.div className="flex justify-evenly py-4 px-2 space-x-4 w-full">
-        <motion.button
-          initial={{ rotate: 0, y: 0 }}
-          animate={{
-            scale: isInView ? 1 : 0.95,
-            zIndex: isInView ? 10 : 1,
-            backgroundColor: isInView ? "#83a598" : "#282828",
-          }}
-          whileTap={shakeAnimation}
-          className="space-x-4 border-2 border-gruvbox-dark-fg3 rounded-sm flex items-center font-medium justify-center w-full py-2"
-        >
-          <FaExternalLinkAlt size={20} />
-          <span className="text-xl select-none">Site</span>
-        </motion.button>
-        <motion.button
-          initial={{ rotate: 0, y: 0 }}
-          animate={{
-            scale: isInView ? 1 : 0.95,
-            zIndex: isInView ? 10 : 1,
-            backgroundColor: isInView ? "#504945" : "#282828",
-          }}
-          whileTap={shakeAnimation}
-          className="space-x-4 border-2 border-gruvbox-dark-fg3 rounded-sm flex items-center font-medium justify-center w-full py-2"
-        >
-          <FaGithub size={22} />
-          <span className="text-xl select-none">Source</span>
-        </motion.button>
+        <Link href={siteLink as string} passHref legacyBehavior>
+          <a target="_blank" rel="noopener noreferrer" className="w-full">
+            <motion.button
+              initial={{ rotate: 0, y: 0 }}
+              animate={{
+                scale: isInView ? 1 : 0.95,
+                zIndex: isInView ? 10 : 1,
+                backgroundColor: isInView ? "#83a598" : "#282828",
+              }}
+              whileTap={shakeAnimation}
+              className="space-x-4 border-2 border-gruvbox-dark-fg3 rounded-sm flex items-center font-medium justify-center w-full py-2"
+            >
+              <FaExternalLinkAlt size={20} />
+              <span className="text-xl select-none">Site</span>
+            </motion.button>
+          </a>
+        </Link>
+        <Link href={sourceLink as string} passHref legacyBehavior>
+          <a target="_blank" rel="noopener noreferrer" className="w-full">
+            <motion.button
+              initial={{ rotate: 0, y: 0 }}
+              animate={{
+                scale: isInView ? 1 : 0.95,
+                zIndex: isInView ? 10 : 1,
+                backgroundColor: isInView ? "#504945" : "#282828",
+              }}
+              whileTap={shakeAnimation}
+              className="space-x-4 border-2 border-gruvbox-dark-fg3 rounded-sm flex items-center font-medium justify-center w-full py-2"
+            >
+              <FaGithub size={22} />
+              <span className="text-xl select-none">Source</span>
+            </motion.button>
+          </a>
+        </Link>
       </motion.div>
     </motion.div>
   );
@@ -256,6 +277,8 @@ const ProjectGallery = ({ projects }: ProjectGalleryProps) => {
             imageLink={project.imageLink}
             videoLink={project.videoLink}
             techStacks={project.description.techStacks}
+            siteLink={project.siteLink}
+            sourceLink={project.sourceLink}
           />
         </div>
       ))}

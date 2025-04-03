@@ -43,28 +43,35 @@ const Navbar = () => {
       >
         <div className="flex items-center justify-between w-full">
           {/* Logo */}
-          <Image
-            src="/logo.svg"
-            width={40}
-            height={40}
-            alt="Logo"
-            className="w-20 md:hidden self-start translate-y-1 sm:translate-0"
-          />
-          <span className="text-xl md:text-3xl font-extrabold text-gruvbox-dark-fg0 hidden md:block">
-            Mallar B.
-          </span>
+          <Link href="#hero">
+            <Image
+              src="/logo.svg"
+              width={40}
+              height={40}
+              alt="Logo"
+              className="w-20 md:hidden self-start translate-y-1 sm:translate-0"
+            />
+            <span className="text-xl md:text-3xl font-extrabold text-gruvbox-dark-fg0 hidden md:block">
+              Mallar B.
+            </span>
+          </Link>
 
           {/* Navigation */}
           <nav className="font-black text-gruvbox-dark-fg0">
             <ul className="sm:flex space-x-4 md:space-x-6 items-center justify-evenly hidden">
-              <li className="md:text-base">
-                <Link href="#hero" className="sm:text-base md:text-xl">
-                  Home
-                </Link>
-              </li>
+              {/* <li className="md:text-base"> */}
+              {/*   <Link href="#hero" className="sm:text-base md:text-xl"> */}
+              {/*     Home */}
+              {/*   </Link> */}
+              {/* </li> */}
               <li className="md:text-base">
                 <Link href="#about" className="sm:text-base md:text-xl">
                   About
+                </Link>
+              </li>
+              <li className="md:text-base">
+                <Link href="#projects" className="sm:text-base md:text-xl">
+                  Projects
                 </Link>
               </li>
               <li className="md:text-base">
@@ -116,7 +123,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile navigation menu */}
-        <AnimatePresence>{isMenuOpened && <MobileMenu />}</AnimatePresence>
+        <AnimatePresence>{isMenuOpened && <MobileMenu onClick={() => setIsMenuOpened(false)} />}</AnimatePresence>
       </motion.header>
 
       {/* Backdrop*/}
