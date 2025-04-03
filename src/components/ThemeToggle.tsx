@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 
+// will be used to manage themes between different components 
+// for mobile and desktop
+const THEME_CHANGE_EVENT = "themeChange";
+
 const ThemeToggle = ({
   size,
   style,
@@ -10,8 +14,15 @@ const ThemeToggle = ({
 }) => {
   const [theme, setTheme] = useState("dark");
   const handleThemeChange = (th: string) => {
-    setTheme(th === "dark" ? "light" : "dark");
-    localStorage.setItem("theme", th === "dark" ? "light" : "dark");
+    const newTheme = th === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+
+    // create and dispatch the event
+    const event = new CustomEvent(THEME_CHANGE_EVENT, {
+      detail: { theme: newTheme },
+    });
+    window.dispatchEvent(event);
   };
   const getTheme = () => {
     if (typeof localStorage !== "undefined") {
@@ -27,10 +38,24 @@ const ThemeToggle = ({
   };
 
   useEffect(() => {
+    // trigger on theme change
+    const handleThemeChange = (e: CustomEvent) => {
+      const newTheme = e.detail.theme;
+      console.log("Theme change detected:", newTheme);
+      setTheme(newTheme);
+    };
+
+    // Need to cast to any for TypeScript
+    window.addEventListener(THEME_CHANGE_EVENT, handleThemeChange as any);
+
     // running inside useEffect so no hydration error
     setTheme(() => getTheme());
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
+
+    return () => {
+      window.removeEventListener(THEME_CHANGE_EVENT, handleThemeChange as any);
+    };
   }, [theme]);
 
   return (
