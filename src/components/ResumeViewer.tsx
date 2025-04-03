@@ -24,6 +24,7 @@ const ResumeViewer = ({ onClose }: { onClose: () => void }) => {
         transition={{ duration: 0.3, opacity: { delay: 0.4 } }}
         height="98%"
         src="/Resume.pdf#toolbar=0&zoom=90"
+        // src="https://docs.google.com/document/d/1nIEau7k-LWS1h_SSHNnFnVs0Xh-nyASZ-32z6xL4y4Q/edit?tab=t.0"
         className="aspect-[12/16]"
       ></motion.iframe>
       <div className="flex flex-col h-full justify-between">
