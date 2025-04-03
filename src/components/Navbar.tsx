@@ -8,10 +8,12 @@ import ThemeToggle from "./ThemeToggle";
 import { CgClose } from "react-icons/cg";
 import { RxHamburgerMenu } from "react-icons/rx";
 import MobileMenu from "./MobileMenu";
+import ResumeViewer from "./ResumeViewer";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpened, setIsMenuOpened] = useState(false);
+  const [isResumeOpened, setIsResumeOpened] = useState(false);
 
   useEffect(() => {
     document.documentElement.classList.toggle(
@@ -58,29 +60,31 @@ const Navbar = () => {
 
           {/* Navigation */}
           <nav className="font-black text-gruvbox-dark-fg0">
-            <ul className="sm:flex space-x-4 md:space-x-6 items-center justify-evenly hidden">
+            <ul className="sm:flex space-x-4 md:space-x-6 items-center justify-evenly hidden xl:translate-x-36 lg:translate-x-40">
               {/* <li className="md:text-base"> */}
               {/*   <Link href="#hero" className="sm:text-base md:text-xl"> */}
               {/*     Home */}
               {/*   </Link> */}
               {/* </li> */}
-              <li className="md:text-base">
-                <Link href="#about" className="sm:text-base md:text-xl">
-                  About
-                </Link>
+              <li className="sm:text-base lg:text-xl">
+                <Link href="#about">About</Link>
               </li>
-              <li className="md:text-base">
-                <Link href="#projects" className="sm:text-base md:text-xl">
-                  Projects
-                </Link>
+              <li className="sm:text-base lg:text-xl">
+                <Link href="#projects">Projects</Link>
               </li>
-              <li className="md:text-base">
-                <Link href="#contact" className="sm:text-base md:text-xl">
-                  Contact
-                </Link>
+              <li className="sm:text-base lg:text-xl">
+                <Link href="#contact">Contact</Link>
               </li>
-              <li>
-                <ThemeToggle />
+              <li className="sm:text-base lg:text-xl">
+                <button
+                  onClick={() => setIsResumeOpened((state) => !state)}
+                  className="cursor-pointer"
+                >
+                  Resume
+                </button>
+              </li>
+              <li className="md:translate-x-4">
+                <ThemeToggle size={28} / >
               </li>
             </ul>
 
@@ -123,7 +127,11 @@ const Navbar = () => {
         </div>
 
         {/* Mobile navigation menu */}
-        <AnimatePresence>{isMenuOpened && <MobileMenu onClick={() => setIsMenuOpened(false)} />}</AnimatePresence>
+        <AnimatePresence>
+          {isMenuOpened && (
+            <MobileMenu onClick={() => setIsMenuOpened(false)} />
+          )}
+        </AnimatePresence>
       </motion.header>
 
       {/* Backdrop*/}
@@ -137,6 +145,13 @@ const Navbar = () => {
             exit={{ opacity: 0 }}
             onClick={() => setIsMenuOpened(false)}
           />
+        )}
+      </AnimatePresence>
+
+      {/* Resume modal */}
+      <AnimatePresence mode="popLayout">
+        {isResumeOpened && (
+          <ResumeViewer onClose={() => setIsResumeOpened(false)} />
         )}
       </AnimatePresence>
     </div>
