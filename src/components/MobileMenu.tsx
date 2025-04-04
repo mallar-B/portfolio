@@ -1,7 +1,13 @@
 import { motion } from "motion/react";
 import Link from "next/link";
 
-const MobileMenu = ({onClick}: {onClick: () => void}) => {
+const MobileMenu = ({
+  onClick,
+  setIsResumeOpened,
+}: {
+  onClick: () => void;
+  setIsResumeOpened: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const items = ["Home", "About", "Projects", "Contact"];
   return (
     <motion.ul
@@ -14,14 +20,17 @@ const MobileMenu = ({onClick}: {onClick: () => void}) => {
     >
       {items.map((item, index) => (
         <Link href={`#${item.toLowerCase()}`} key={index}>
-          <li
-            key={index}
-            className="py-2 text-xl font-bold text-gruvbox-dark-fg"
-          >
-            {item}
+          <li className="py-2 text-xl font-bold text-gruvbox-dark-fg">
+            {item !== "Resume" ? item : null}
           </li>
         </Link>
       ))}
+      <li
+        className="py-2 text-xl font-bold text-gruvbox-dark-fg"
+        onClick={() => setIsResumeOpened(true)}
+      >
+        Resume
+      </li>
     </motion.ul>
   );
 };
