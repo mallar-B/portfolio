@@ -109,16 +109,14 @@ const VideoCard = ({ videoLink }: VideoCardProps) => {
 
 const TechStackPills = ({ techStacks }: { techStacks: string[] }) => {
   return (
-    <div className="flex flex-wrap gap-2 translate-y-8 ">
+    <div className="flex flex-wrap gap-2 items-start">
       {techStacks.map((stack, index) => (
-        <motion.span
+        <span
           key={index}
-          className="bg-gruvbox-dark-purple text-gruvbox-dark-fg0 text-md font-mono font-extrabold px-3 py-1 rounded-sm shadow-md cursor-pointer transition-all hover:bg-gray-700"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          className="bg-gruvbox-dark-purple text-gruvbox-dark-fg0 text-md font-mono font-extrabold px-3 py-1 rounded-sm shadow-md cursor-pointer transition-all hover:scale-105 transform-gpu"
         >
           {stack}
-        </motion.span>
+        </span>
       ))}
     </div>
   );
@@ -166,33 +164,45 @@ const ProjectCard = ({
             {title}
           </h2>
           <h6>{about}</h6>
-          <TechStackPills techStacks={techStacks} />
-          <div className="relative z-10">
-            <div className="translate-y-8 pt-10 flex space-x-4">
-              <Link href={siteLink as string} passHref legacyBehavior>
-                <a target="_blank" rel="noopener noreferrer" className="w-full">
-                  <motion.button
-                    initial={{ rotate: 0, y: 0 }}
-                    whileTap={shakeAnimation}
-                    className="space-x-4 border-2 bg-gruvbox-dark-blue border-gruvbox-dark-fg3 rounded-sm flex items-center font-medium justify-center w-full py-2"
+          <div className="flex flex-col justify-center translate-y-8">
+            <TechStackPills techStacks={techStacks} />
+            <div className="relative z-10">
+              <div className="pt-10 flex space-x-4">
+                <Link href={siteLink as string} passHref legacyBehavior>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full"
                   >
-                    <FaExternalLinkAlt size={20} />
-                    <span className="text-xl select-none">Site</span>
-                  </motion.button>
-                </a>
-              </Link>
-              <Link href={sourceLink as string} passHref legacyBehavior>
-                <a target="_blank" rel="noopener noreferrer" className="w-full">
-                  <motion.button
-                    initial={{ rotate: 0, y: 0 }}
-                    whileTap={shakeAnimation}
-                    className="space-x-4 border-2 border-gruvbox-dark-fg3 text-gruvbox-dark-blue rounded-sm flex items-center font-medium justify-center w-full py-2"
+                    <motion.button
+                      initial={{ rotate: 0, y: 0 }}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={shakeAnimation}
+                      className="space-x-4 border-2 bg-gruvbox-dark-blue cursor-pointer border-gruvbox-dark-fg3 rounded-sm flex items-center font-medium justify-center w-full py-2"
+                    >
+                      <FaExternalLinkAlt size={20} />
+                      <span className="text-xl select-none">Site</span>
+                    </motion.button>
+                  </a>
+                </Link>
+                <Link href={sourceLink as string} passHref legacyBehavior>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full"
                   >
-                    <FaGithub size={22} />
-                    <span className="text-xl select-none">Source</span>
-                  </motion.button>
-                </a>
-              </Link>
+                    <motion.button
+                      initial={{ rotate: 0, y: 0 }}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={shakeAnimation}
+                      className="space-x-4 border-2 border-gruvbox-dark-fg3 text-gruvbox-dark-blue cursor-pointer rounded-sm flex items-center font-medium justify-center w-full py-2"
+                    >
+                      <FaGithub size={22} />
+                      <span className="text-xl select-none">Source</span>
+                    </motion.button>
+                  </a>
+                </Link>
+              </div>
             </div>
           </div>
         </motion.div>
