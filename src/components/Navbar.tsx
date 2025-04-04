@@ -21,6 +21,11 @@ const Navbar = () => {
     mobile: "https://resume-asz.pages.dev/Resume.pdf",
     pc: "/Resume.pdf#toolbar=0&zoom=90",
   };
+  const navItems = [
+    { href: "#about", label: "About" },
+    { href: "#projects", label: "Projects" },
+    { href: "#contact", label: "Contact" },
+  ];
 
   useEffect(() => {
     document.documentElement.classList.toggle(
@@ -84,24 +89,28 @@ const Navbar = () => {
               {/*     Home */}
               {/*   </Link> */}
               {/* </li> */}
-              <li className="sm:text-base lg:text-xl">
-                <Link href="#about">About</Link>
-              </li>
-              <li className="sm:text-base lg:text-xl">
-                <Link href="#projects">Projects</Link>
-              </li>
-              <li className="sm:text-base lg:text-xl">
-                <Link href="#contact">Contact</Link>
-              </li>
-              <li className="sm:text-base lg:text-xl">
+              {navItems.map(({ href, label }) => (
+                <li key={label} className="sm:text-base lg:text-xl px-1 hover:scale-105 !transition-all !duration-300">
+                  <Link
+                    href={href}
+                    className="group relative inline-block pb-1"
+                  >
+                    <span className="relative z-10">{label}</span>
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-current !transition-all !duration-300 group-hover:w-full"></span>
+                  </Link>
+                </li>
+              ))}
+
+              <li className="sm:text-base lg:text-xl hover:scale-105 !transition-all !duration-300">
                 <button
                   onClick={() => setIsResumeOpened((state) => !state)}
-                  className="cursor-pointer"
+                  className="group relative inline-block pb-1 cursor-pointer"
                 >
-                  Resume
+                  <span className="relative z-10">Resume</span>
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-current !transition-all !duration-300 group-hover:w-full"></span>
                 </button>
               </li>
-              <li className="md:translate-x-4">
+              <li className="md:translate-x-4 hover:scale-125 !transition-all !duration-300">
                 <ThemeToggle size={28} />
               </li>
             </ul>

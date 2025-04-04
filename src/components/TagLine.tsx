@@ -5,7 +5,7 @@ const tagLines = [
   "Full Stack Developer",
   "Open Source Contributer",
   "DevOps Engineer",
-  "Nixos Enthusiast",
+  "NixOS Enthusiast",
   "Linux Ricer",
   "Neovim Enjoyer"
 ];
