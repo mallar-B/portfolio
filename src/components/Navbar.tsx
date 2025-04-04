@@ -9,17 +9,18 @@ import { CgClose } from "react-icons/cg";
 import { RxHamburgerMenu } from "react-icons/rx";
 import MobileMenu from "./MobileMenu";
 import ResumeViewer from "./ResumeViewer";
+import Logo from "./Logo";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [isResumeOpened, setIsResumeOpened] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const pdfLinks={
+  const pdfLinks = {
     // mobile:"https://docs.google.com/document/d/1nIEau7k-LWS1h_SSHNnFnVs0Xh-nyASZ-32z6xL4y4Q/edit?pli=1&tab=t.0#toolbar=0&zoom=10",
-    mobile:"https://resume-asz.pages.dev/Resume.pdf",
-    pc:"/Resume.pdf#toolbar=0&zoom=90"
-  }
+    mobile: "https://resume-asz.pages.dev/Resume.pdf",
+    pc: "/Resume.pdf#toolbar=0&zoom=90",
+  };
 
   useEffect(() => {
     document.documentElement.classList.toggle(
@@ -60,13 +61,16 @@ const Navbar = () => {
         <div className="flex items-center justify-between w-full">
           {/* Logo */}
           <Link href="#hero">
-            <Image
-              src="/logo.svg"
-              width={40}
-              height={40}
-              alt="Logo"
-              className="w-20 md:hidden self-start translate-y-1 sm:translate-0"
-            />
+            {/* <Image */}
+            {/*   src="/logo.svg" */}
+            {/*   width={40} */}
+            {/*   height={40} */}
+            {/*   alt="Logo" */}
+            {/*   className="w-20 md:hidden self-start translate-y-1 sm:translate-0" */}
+            {/* /> */}
+            <div className="w-20 md:hidden self-start translate-y-1 sm:translate-0">
+              <Logo />
+            </div>
             <span className="text-xl md:text-3xl font-extrabold text-gruvbox-dark-fg0 hidden md:block">
               Mallar B.
             </span>
