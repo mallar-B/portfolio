@@ -14,6 +14,12 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [isResumeOpened, setIsResumeOpened] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const pdfLinks={
+    // mobile:"https://docs.google.com/document/d/1nIEau7k-LWS1h_SSHNnFnVs0Xh-nyASZ-32z6xL4y4Q/edit?pli=1&tab=t.0#toolbar=0&zoom=10",
+    mobile:"https://resume-asz.pages.dev/Resume.pdf",
+    pc:"/Resume.pdf#toolbar=0&zoom=90"
+  }
 
   useEffect(() => {
     document.documentElement.classList.toggle(
@@ -27,6 +33,14 @@ const Navbar = () => {
       setIsMenuOpened(false);
     };
     window.addEventListener("scroll", handleScroll);
+
+    // check mobile or not
+    const userAgent = navigator.userAgent.toLowerCase();
+    setIsMobile(
+      /android|iphone|ipad|ipod|blackberry|opera mini|iemobile|wpdesktop/i.test(
+        userAgent,
+      ),
+    );
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -84,7 +98,7 @@ const Navbar = () => {
                 </button>
               </li>
               <li className="md:translate-x-4">
-                <ThemeToggle size={28} / >
+                <ThemeToggle size={28} />
               </li>
             </ul>
 
@@ -129,7 +143,10 @@ const Navbar = () => {
         {/* Mobile navigation menu */}
         <AnimatePresence>
           {isMenuOpened && (
-            <MobileMenu onClick={() => setIsMenuOpened(false)} />
+            <MobileMenu
+              onClick={() => setIsMenuOpened(false)}
+              setIsResumeOpened={setIsResumeOpened}
+            />
           )}
         </AnimatePresence>
       </motion.header>
@@ -151,7 +168,11 @@ const Navbar = () => {
       {/* Resume modal */}
       <AnimatePresence mode="popLayout">
         {isResumeOpened && (
-          <ResumeViewer onClose={() => setIsResumeOpened(false)} />
+          <ResumeViewer
+            onClose={() => setIsResumeOpened(false)}
+            pdfLinks={pdfLinks}
+            isMobile={isMobile}
+          />
         )}
       </AnimatePresence>
     </div>
