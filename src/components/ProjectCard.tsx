@@ -158,15 +158,15 @@ const ProjectCard = ({
         </AnimatePresence>
 
         {/* Description */}
-        <motion.div className="relative text-gruvbox-dark-fg2 px-10 py-20 bg-gruvbox-dark-bg0 w-1/2 max-w-xl shadow-lg shadow-gruvbox-dark-bg0 border-gruvbox-dark-fg3 border rounded-sm z-20" >
+        <motion.div className="relative text-gruvbox-dark-fg2 px-10 py-20 bg-gruvbox-dark-bg0 w-1/2 max-w-xl shadow-lg shadow-gruvbox-dark-bg0 border-gruvbox-dark-fg3 border rounded-sm z-10">
           <hr className="p-4 border-t-2 border-gruvbox-dark-yellow" />
           <h2 className="absolute top-7 left-9 font-black text-3xl text-gruvbox-dark-aqua font-mono">
             {title}
           </h2>
           <h6>{about}</h6>
-          <div className="flex flex-col justify-center translate-y-8">
+          <div className="flex flex-col justify-center translate-y-8 z-10">
             <TechStackPills techStacks={techStacks} />
-            <div className="relative z-10">
+            <div className="relative z-20">
               <div className="pt-10 flex space-x-4">
                 <Link href={siteLink as string} passHref legacyBehavior>
                   <a
