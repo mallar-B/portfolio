@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import { CgClose } from "react-icons/cg";
 import { FaBookOpen, FaDownload } from "react-icons/fa6";
+import { isModuleNamespaceObject } from "util/types";
 
 const ResumeViewer = ({
   onClose,
@@ -99,26 +100,28 @@ const ResumeViewer = ({
           </Link>
 
           {/* Open in another tab Button */}
-          <Link
-            href="/Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            passHref
-            className="sm:m-4 w-max"
-          >
-            <motion.button
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ opacity: { delay: 0.2 } }}
-              whileHover={{ scale: 1.1, borderRadius: "1px" }}
-              whileTap={{ scale: 0.9 }}
-              className="gap-2 flex font-mono break-words cursor-pointer items-center justify-center px-2 py-3 text-gruvbox-dark-bg3 bg-gruvbox-dark-fg4 rounded-sm text-xl font-black"
+          {!isMobile && (
+            <Link
+              href="/Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              passHref
+              className="sm:m-4 w-max"
             >
-              <FaBookOpen size={20} />
-              Open in another tab
-            </motion.button>
-          </Link>
+              <motion.button
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ opacity: { delay: 0.2 } }}
+                whileHover={{ scale: 1.1, borderRadius: "1px" }}
+                whileTap={{ scale: 0.9 }}
+                className="gap-2 flex font-mono break-words cursor-pointer items-center justify-center px-2 py-3 text-gruvbox-dark-bg3 bg-gruvbox-dark-fg4 rounded-sm text-xl font-black"
+              >
+                <FaBookOpen size={20} />
+                Open in another tab
+              </motion.button>
+            </Link>
+          )}
         </div>
       </div>
     </motion.div>
