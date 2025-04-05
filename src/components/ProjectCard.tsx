@@ -158,7 +158,7 @@ const ProjectCard = ({
         </AnimatePresence>
 
         {/* Description */}
-        <motion.div className="relative text-gruvbox-dark-fg2 px-10 py-20 bg-gruvbox-dark-bg0 w-1/2 max-w-xl shadow-lg shadow-gruvbox-dark-bg0 border-gruvbox-dark-fg3 border rounded-sm">
+        <motion.div className="relative text-gruvbox-dark-fg2 px-10 py-20 bg-gruvbox-dark-bg0 w-1/2 max-w-xl shadow-lg shadow-gruvbox-dark-bg0 border-gruvbox-dark-fg3 border rounded-sm z-20" >
           <hr className="p-4 border-t-2 border-gruvbox-dark-yellow" />
           <h2 className="absolute top-7 left-9 font-black text-3xl text-gruvbox-dark-aqua font-mono">
             {title}
