@@ -8,6 +8,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaAngleDoubleDown } from "react-icons/fa";
+import projects from "@/projects";
 
 export default function Home() {
   useEffect(() => {
@@ -51,64 +52,6 @@ export default function Home() {
   const gridSize = 57;
   const [numCols, setNumCols] = useState(0);
   const [numRows, setNumRows] = useState(0);
-
-  const projects = [
-    {
-      description: {
-        title: "Chess-Room",
-        description: "A platform for teaching chess",
-        about: (
-          <div>
-            A SaaS-based virtual classroom platform where users can register as
-            either a teacher or a student, enabling interactive and controlled
-            learning environments.
-            <br />
-            <br />
-            <span className="text-xl font-extrabold underline">
-              Highlights:
-            </span>
-            <ul className="list-disc pl-8 pt-2">
-              <li className="py-1">
-                <span className="font-bold">Interactive Virtual Board:</span>{" "}
-                Real-time collaboration with fine-grained access control.
-                Enable/disable actions like drawing, solving problems, or making
-                moves.{" "}
-              </li>
-              <li className="py-1">
-                <span className="font-bold"> Real-Time Communication:</span>{" "}
-                Leveraged WebSockets and Agora RTC for low-latency (
-                <strong>&lt;50ms</strong>) interaction.
-              </li>
-              <li className="py-1">
-                <span className="font-bold">
-                  Role-Based Dynamic Access Control:
-                </span>{" "}
-                Teacher can manage classroom behavior, audio/video permissions,
-                and student interactions. Control who can make moves on the
-                virtual board and participate in discussions.
-              </li>
-              <li className="py-1">
-                <span className="font-bold">SaaS Architecture:</span> Scalable
-                to support multiple classrooms and institutions simultaneously.
-              </li>
-            </ul>
-          </div>
-        ),
-        techStacks: [
-          "Next.js",
-          " Node.js",
-          "Socket.io",
-          "PostgreSQL",
-          "OAuth2.0",
-          "Zustand",
-        ],
-      },
-      imageLink: "/chess_room_ss.jpg",
-      videoLink: "/chess_room_video.mp4",
-      siteLink: "https://chessroom-ubny.onrender.com/",
-      sourceLink: "https://github.com/mallar-B",
-    },
-  ];
 
   useEffect(() => {
     const updateGrid = () => {
