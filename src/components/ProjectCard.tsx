@@ -15,6 +15,7 @@ interface ProjectCardProps {
   siteLink?: string;
   sourceLink?: string;
   techStacks: string[];
+  bigScreenCardRef: React.RefObject<HTMLDivElement | null>;
 }
 
 interface ProjectGalleryProps {
@@ -34,6 +35,7 @@ interface ProjectGalleryProps {
 
 interface VideoCardProps {
   videoLink: string | undefined;
+  isVideoShown: boolean;
 }
 
 export const shakeAnimation = {
@@ -49,8 +51,17 @@ export const shakeAnimation = {
   },
 };
 
-const VideoCard = ({ videoLink }: VideoCardProps) => {
+const VideoCard = ({ videoLink, isVideoShown }: VideoCardProps) => {
   if (!videoLink) return null;
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (isVideoShown && videoRef.current) {
+      // Start video from start after shown
+      videoRef.current.currentTime = 0;
+      videoRef.current.play(); 
+    }
+  }, [isVideoShown]);
 
   return createPortal(
     <div
@@ -95,10 +106,11 @@ const VideoCard = ({ videoLink }: VideoCardProps) => {
       >
         <motion.video
           src={videoLink}
+          ref={videoRef}
           autoPlay
           loop
           muted
-          className="w-full h-full object-fill rounded-none shadow-xl"
+          className={`w-full h-full object-fill rounded-none shadow-xl ${isVideoShown ? "" : "hidden"}`}
           style={{ backfaceVisibility: "hidden" }}
         />
       </motion.div>
@@ -131,11 +143,13 @@ const ProjectCard = ({
   techStacks,
   siteLink,
   sourceLink,
+  bigScreenCardRef,
 }: ProjectCardProps) => {
   const [isBigScreen, setIsBigScreen] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(cardRef, { amount: 0.9 });
-  const bigScreenIsInView = useInView(cardRef, { amount: 0.7 });
+  const bigScreenIsInView = useInView(bigScreenCardRef, { amount: 0.3 });
+  const projectIsInView = useInView(cardRef, { amount: 0.3 });
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -153,7 +167,11 @@ const ProjectCard = ({
         {/* VideoCard */}
         <AnimatePresence>
           {bigScreenIsInView ? (
-            <VideoCard videoLink={videoLink} key={videoLink} />
+            <VideoCard
+              videoLink={videoLink}
+              isVideoShown={projectIsInView}
+              key={videoLink}
+            />
           ) : null}
         </AnimatePresence>
 
@@ -275,8 +293,12 @@ const ProjectCard = ({
 };
 
 const ProjectGallery = ({ projects }: ProjectGalleryProps) => {
+  const bigScreenCardRef = useRef<HTMLDivElement | null>(null);
   return (
-    <div className="flex flex-col overflow-x-hidden justify-center items-center">
+    <div
+      className="flex flex-col overflow-x-hidden justify-center items-center"
+      ref={bigScreenCardRef}
+    >
       {projects.map((project, index) => (
         <div key={index} className="m-4 w-full px-10">
           <ProjectCard
@@ -289,6 +311,7 @@ const ProjectGallery = ({ projects }: ProjectGalleryProps) => {
             techStacks={project.description.techStacks}
             siteLink={project.siteLink}
             sourceLink={project.sourceLink}
+            bigScreenCardRef={bigScreenCardRef}
           />
         </div>
       ))}
