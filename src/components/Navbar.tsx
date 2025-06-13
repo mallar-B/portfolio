@@ -18,7 +18,8 @@ const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
   const pdfLinks = {
     // mobile:"https://docs.google.com/document/d/1nIEau7k-LWS1h_SSHNnFnVs0Xh-nyASZ-32z6xL4y4Q/edit?pli=1&tab=t.0#toolbar=0&zoom=10",
-    mobile: "https://resume-asz.pages.dev/Resume.pdf",
+    // mobile: "https://resume-asz.pages.dev/Resume.pdf",
+    mobile: "https://resumefullstack.pages.dev/Resume_Mallar-Bhattacharya_FullStack.pdf", // hosted on cloudflare
     pc: "/Resume.pdf#toolbar=0&zoom=90",
   };
   const navItems = [
